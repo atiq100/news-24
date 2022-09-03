@@ -58,22 +58,22 @@ const displayNewsDetail =  (allnews) =>{
         categoryDiv.classList.add('col-md-4')
         categoryDiv.innerHTML = `
         <div class="card h-100">
-        <img src="${news.thumbnail_url ? news.thumbnail_url :'N/A'}" class="card-img-top" alt="...">
+        <img src="${news.thumbnail_url ? news.thumbnail_url :'N/A'}" class="card-img-top img-fluid h-50" alt="...">
         <div class="card-body">
           <h5 class="card-title">${news.title ? news.title :'N/A'}</h5>
           <p class="card-text">${news.details.length > 150 ? news.details.slice(0,150)+'...' :'N/A'}</p>
         </div>
         <div class="card-footer">
-        <div class="d-flex justify-content-start rounded-3 p-2 mb-2">
+        <div class="d-flex justify-content-between rounded-3 p-2 mb-2">
         <div>
-        <img src="${news.image_url ? news.image_url : 'N/A'}" class="rounded-2 w-25">
-        <p>${news.author.name}</p>
+        <img src="${news.image_url ? news.image_url : 'N/A'}" class="avatar">
+        <p>${news.author.name ? news.author.name : 'no data found'}</p>
         </div>
         <div>
           <p class="small text-muted mb-1">
             View
           </p>
-          <p class="mb-0">${news.total_view}</p>
+          <p class="mb-0">${news.total_view ? news.total_view :'N/A'}</p>
         </div>
         <div class="px-3">
         <button type="button" class="btn btn-primary flex-grow-1" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick="loadNewsDetails('${news._id}')">
