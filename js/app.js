@@ -37,6 +37,14 @@ const displayNewsDetail =  (allnews) =>{
     if(allnews.length !== 0){
         noNews.classList.remove('d-none')
     }
+    const viewSort =allnews.sort((a,b) =>{
+        if(a.total_view <b.total_view){
+            return 1;
+        }
+        else{
+            return -1;
+        }
+    });
     // else{
     //     noNews.classList.add('d-none')
     // }
