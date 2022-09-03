@@ -20,6 +20,7 @@ const displayNewsCategory = (newses) =>{
     });
 }
 const loadNewsDetail = (categoryId) =>{
+    toggleSpinner(true)
     const url = (`https://openapi.programming-hero.com/api/news/category/${categoryId}`)
      fetch(url)
     .then(res=>res.json()) 
@@ -33,7 +34,7 @@ const displayNewsDetail =  (allnews) =>{
     const newsContainer = document.getElementById('news-container')
     newsContainer.innerHTML=''
     allnews.forEach(news => {
-       
+        toggleSpinner(false)
         const categoryDiv = document.createElement('div')
         categoryDiv.classList.add('col-md-4')
         categoryDiv.innerHTML = `
@@ -67,6 +68,19 @@ const displayNewsDetail =  (allnews) =>{
         newsContainer.appendChild(categoryDiv)
         
     });
+    //
+    
+}
+
+// loader
+const toggleSpinner = isLoading=>{
+    const loader = document.getElementById('loader')
+    if(isLoading){
+        loader.classList.remove('d-none')
+    }
+    else{
+        loader.classList.add('d-none')
+    }
 }
 
 const loadNewsDetails = (newsId) =>{
