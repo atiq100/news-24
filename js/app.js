@@ -25,8 +25,6 @@ const loadNewsDetail = (categoryId) =>{
     .then(res=>res.json()) 
     .then(data=> displayNewsDetail( data.data)) 
    
-   
-    
 
 }
 const displayNewsDetail =  (allnews) =>{
@@ -58,7 +56,7 @@ const displayNewsDetail =  (allnews) =>{
           <p class="mb-0">${news.total_view}</p>
         </div>
         <div class="px-3">
-        <button type="button" class="btn btn-primary flex-grow-1">
+        <button type="button" class="btn btn-primary flex-grow-1" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick="loadNewsDetails('${news._id}')">
         Details
         </div>
       </div>
@@ -71,5 +69,26 @@ const displayNewsDetail =  (allnews) =>{
     });
 }
 
+const loadNewsDetails = (newsId) =>{
+    const url = (`https://openapi.programming-hero.com/api/news/${newsId}`)
+     fetch(url)
+    .then(res=>res.json()) 
+    .then(data=> displayNewsDetails( data.data[0])) 
+   
 
+}
+const displayNewsDetails=(data)=>{
+    console.log(data)
+    const modalTitel = document.getElementById('exampleModalLabel')
+    modalTitel.innerText=data.title
+    const phoneModalDetails = document.getElementById('modal-detail')
+    phoneModalDetails.innerHTML=`
+    <p>Detail:${data.details.length > 250 ? data.details.slice(0,250)+'...' :'no data found'}</p>
+    <p>Author Name: ${data.author.name ? data.author.name : 'no data found'}</p>
+    <p>Published Date: ${data.author.published_date ? data.author.published_date :'no data found'}</p>
+    
+    `
+}
+
+loadNewsDetails('0282e0e58a5c404fbd15261f11c2ab6a')
 loadNewsCategory()
