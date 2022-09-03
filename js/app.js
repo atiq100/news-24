@@ -30,6 +30,17 @@ const loadNewsDetail = (categoryId) =>{
 }
 const displayNewsDetail =  (allnews) =>{
     
+    //display no news found
+    const noNews = document.getElementById('none-messege')
+    noNews.innerText = allnews.length
+    
+    if(allnews.length !== 0){
+        noNews.classList.remove('d-none')
+    }
+    // else{
+    //     noNews.classList.add('d-none')
+    // }
+
     //const allnews = await loadNewsDetail()
     const newsContainer = document.getElementById('news-container')
     newsContainer.innerHTML=''
@@ -69,7 +80,7 @@ const displayNewsDetail =  (allnews) =>{
         
     });
     //
-    
+    toggleSpinner(false)
 }
 
 // loader
@@ -104,5 +115,5 @@ const displayNewsDetails=(data)=>{
     `
 }
 
-loadNewsDetails('0282e0e58a5c404fbd15261f11c2ab6a')
+loadNewsDetail('01')
 loadNewsCategory()
